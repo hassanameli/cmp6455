@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/SLCounty_3566_1.js"></script>
+        <script src="data/SLCounty_pedcrash2015_2.js"></script>
+        <script src="data/SLCounty_pedcrash2016_3.js"></script>
+        <script src="data/SLCounty_pedcrash2017_4.js"></script>
+        <script src="data/SLCounty_pedcrash2018_5.js"></script>
+        <script src="data/SLCounty_pedcrash2019_6.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[40.670881303258,-111.99208323007086],[40.79782578117642,-111.8161896831582]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_CartoLight_0');
+        map.getPane('pane_CartoLight_0').style.zIndex = 400;
+        var layer_CartoLight_0 = L.tileLayer('http://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.pn', {
+            pane: 'pane_CartoLight_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 22
+        });
+        layer_CartoLight_0;
+        map.addLayer(layer_CartoLight_0);
+        function pop_SLCounty_3566_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYNBR'] !== null ? autolinker.link(feature.properties['COUNTYNBR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ENTITYNBR'] !== null ? autolinker.link(feature.properties['ENTITYNBR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ENTITYYR'] !== null ? autolinker.link(feature.properties['ENTITYYR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIPS'] !== null ? autolinker.link(feature.properties['FIPS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATEPLANE'] !== null ? autolinker.link(feature.properties['STATEPLANE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP_LASTCE'] !== null ? autolinker.link(feature.properties['POP_LASTCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP_CURRES'] !== null ? autolinker.link(feature.properties['POP_CURRES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GlobalID'] !== null ? autolinker.link(feature.properties['GlobalID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FIPS_STR'] !== null ? autolinker.link(feature.properties['FIPS_STR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COLOR4'] !== null ? autolinker.link(feature.properties['COLOR4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Leng'] !== null ? autolinker.link(feature.properties['SHAPE_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        var pattern_SLCounty_3566_1_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#000000',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_SLCounty_3566_1_0.addTo(map);
+        function style_SLCounty_3566_1_0() {
+            return {
+                pane: 'pane_SLCounty_3566_1',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_SLCounty_3566_1_0,
+                interactive: true,
+            }
+        }
+        function style_SLCounty_3566_1_1() {
+            return {
+                pane: 'pane_SLCounty_3566_1',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SLCounty_3566_1');
+        map.getPane('pane_SLCounty_3566_1').style.zIndex = 401;
+        map.getPane('pane_SLCounty_3566_1').style['mix-blend-mode'] = 'normal';
+        var layer_SLCounty_3566_1 = new L.geoJson.multiStyle(json_SLCounty_3566_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SLCounty_3566_1',
+            layerName: 'layer_SLCounty_3566_1',
+            pane: 'pane_SLCounty_3566_1',
+            onEachFeature: pop_SLCounty_3566_1,
+            styles: [style_SLCounty_3566_1_0,style_SLCounty_3566_1_1,]
+        });
+        bounds_group.addLayer(layer_SLCounty_3566_1);
+        map.addLayer(layer_SLCounty_3566_1);
+        function pop_SLCounty_pedcrash2015_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">pk</th>\
+                        <td>' + (feature.properties['pk'] !== null ? autolinker.link(feature.properties['pk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">objectid</th>\
+                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pedestrian</th>\
+                        <td>' + (feature.properties['pedestrian'] !== null ? autolinker.link(feature.properties['pedestrian'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">YEAR</th>\
+                        <td>' + (feature.properties['YEAR'] !== null ? autolinker.link(feature.properties['YEAR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SLCounty_pedcrash2015_2_0() {
+            return {
+                pane: 'pane_SLCounty_pedcrash2015_2',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,145,35,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SLCounty_pedcrash2015_2');
+        map.getPane('pane_SLCounty_pedcrash2015_2').style.zIndex = 402;
+        map.getPane('pane_SLCounty_pedcrash2015_2').style['mix-blend-mode'] = 'normal';
+        var layer_SLCounty_pedcrash2015_2 = new L.geoJson(json_SLCounty_pedcrash2015_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SLCounty_pedcrash2015_2',
+            layerName: 'layer_SLCounty_pedcrash2015_2',
+            pane: 'pane_SLCounty_pedcrash2015_2',
+            onEachFeature: pop_SLCounty_pedcrash2015_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SLCounty_pedcrash2015_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SLCounty_pedcrash2015_2);
+        map.addLayer(layer_SLCounty_pedcrash2015_2);
+        function pop_SLCounty_pedcrash2016_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">pk</th>\
+                        <td>' + (feature.properties['pk'] !== null ? autolinker.link(feature.properties['pk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">objectid</th>\
+                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pedestrian</th>\
+                        <td>' + (feature.properties['pedestrian'] !== null ? autolinker.link(feature.properties['pedestrian'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">YEAR</th>\
+                        <td>' + (feature.properties['YEAR'] !== null ? autolinker.link(feature.properties['YEAR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SLCounty_pedcrash2016_3_0() {
+            return {
+                pane: 'pane_SLCounty_pedcrash2016_3',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,206,96,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SLCounty_pedcrash2016_3');
+        map.getPane('pane_SLCounty_pedcrash2016_3').style.zIndex = 403;
+        map.getPane('pane_SLCounty_pedcrash2016_3').style['mix-blend-mode'] = 'normal';
+        var layer_SLCounty_pedcrash2016_3 = new L.geoJson(json_SLCounty_pedcrash2016_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SLCounty_pedcrash2016_3',
+            layerName: 'layer_SLCounty_pedcrash2016_3',
+            pane: 'pane_SLCounty_pedcrash2016_3',
+            onEachFeature: pop_SLCounty_pedcrash2016_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SLCounty_pedcrash2016_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SLCounty_pedcrash2016_3);
+        map.addLayer(layer_SLCounty_pedcrash2016_3);
+        function pop_SLCounty_pedcrash2017_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">pk</th>\
+                        <td>' + (feature.properties['pk'] !== null ? autolinker.link(feature.properties['pk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">objectid</th>\
+                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pedestrian</th>\
+                        <td>' + (feature.properties['pedestrian'] !== null ? autolinker.link(feature.properties['pedestrian'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">YEAR</th>\
+                        <td>' + (feature.properties['YEAR'] !== null ? autolinker.link(feature.properties['YEAR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SLCounty_pedcrash2017_4_0() {
+            return {
+                pane: 'pane_SLCounty_pedcrash2017_4',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(106,197,225,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SLCounty_pedcrash2017_4');
+        map.getPane('pane_SLCounty_pedcrash2017_4').style.zIndex = 404;
+        map.getPane('pane_SLCounty_pedcrash2017_4').style['mix-blend-mode'] = 'normal';
+        var layer_SLCounty_pedcrash2017_4 = new L.geoJson(json_SLCounty_pedcrash2017_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SLCounty_pedcrash2017_4',
+            layerName: 'layer_SLCounty_pedcrash2017_4',
+            pane: 'pane_SLCounty_pedcrash2017_4',
+            onEachFeature: pop_SLCounty_pedcrash2017_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SLCounty_pedcrash2017_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SLCounty_pedcrash2017_4);
+        map.addLayer(layer_SLCounty_pedcrash2017_4);
+        function pop_SLCounty_pedcrash2018_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">pk</th>\
+                        <td>' + (feature.properties['pk'] !== null ? autolinker.link(feature.properties['pk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">objectid</th>\
+                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pedestrian</th>\
+                        <td>' + (feature.properties['pedestrian'] !== null ? autolinker.link(feature.properties['pedestrian'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">YEAR</th>\
+                        <td>' + (feature.properties['YEAR'] !== null ? autolinker.link(feature.properties['YEAR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SLCounty_pedcrash2018_5_0() {
+            return {
+                pane: 'pane_SLCounty_pedcrash2018_5',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,209,44,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SLCounty_pedcrash2018_5');
+        map.getPane('pane_SLCounty_pedcrash2018_5').style.zIndex = 405;
+        map.getPane('pane_SLCounty_pedcrash2018_5').style['mix-blend-mode'] = 'normal';
+        var layer_SLCounty_pedcrash2018_5 = new L.geoJson(json_SLCounty_pedcrash2018_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SLCounty_pedcrash2018_5',
+            layerName: 'layer_SLCounty_pedcrash2018_5',
+            pane: 'pane_SLCounty_pedcrash2018_5',
+            onEachFeature: pop_SLCounty_pedcrash2018_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SLCounty_pedcrash2018_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SLCounty_pedcrash2018_5);
+        map.addLayer(layer_SLCounty_pedcrash2018_5);
+        function pop_SLCounty_pedcrash2019_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">pk</th>\
+                        <td>' + (feature.properties['pk'] !== null ? autolinker.link(feature.properties['pk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">objectid</th>\
+                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pedestrian</th>\
+                        <td>' + (feature.properties['pedestrian'] !== null ? autolinker.link(feature.properties['pedestrian'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">YEAR</th>\
+                        <td>' + (feature.properties['YEAR'] !== null ? autolinker.link(feature.properties['YEAR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SLCounty_pedcrash2019_6_0() {
+            return {
+                pane: 'pane_SLCounty_pedcrash2019_6',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(180,100,220,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SLCounty_pedcrash2019_6');
+        map.getPane('pane_SLCounty_pedcrash2019_6').style.zIndex = 406;
+        map.getPane('pane_SLCounty_pedcrash2019_6').style['mix-blend-mode'] = 'normal';
+        var layer_SLCounty_pedcrash2019_6 = new L.geoJson(json_SLCounty_pedcrash2019_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SLCounty_pedcrash2019_6',
+            layerName: 'layer_SLCounty_pedcrash2019_6',
+            pane: 'pane_SLCounty_pedcrash2019_6',
+            onEachFeature: pop_SLCounty_pedcrash2019_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SLCounty_pedcrash2019_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SLCounty_pedcrash2019_6);
+        map.addLayer(layer_SLCounty_pedcrash2019_6);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/SLCounty_pedcrash2019_6.png" /> SLCounty_pedcrash2019': layer_SLCounty_pedcrash2019_6,'<img src="legend/SLCounty_pedcrash2018_5.png" /> SLCounty_pedcrash2018': layer_SLCounty_pedcrash2018_5,'<img src="legend/SLCounty_pedcrash2017_4.png" /> SLCounty_pedcrash2017': layer_SLCounty_pedcrash2017_4,'<img src="legend/SLCounty_pedcrash2016_3.png" /> SLCounty_pedcrash2016': layer_SLCounty_pedcrash2016_3,'<img src="legend/SLCounty_pedcrash2015_2.png" /> SLCounty_pedcrash2015': layer_SLCounty_pedcrash2015_2,'<img src="legend/SLCounty_3566_1.png" /> SLCounty_3566': layer_SLCounty_3566_1,"Carto Light": layer_CartoLight_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
